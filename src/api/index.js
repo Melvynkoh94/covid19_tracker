@@ -8,14 +8,18 @@ export const fetchData = async () => {
 
     // instead of taking response as a variable and then from the response get the data via 'response.data'
     // we can use 'destructuring' (below)
-    const { data } = await axios.get(url);
-    console.log(data);
+    const {
+      data: { confirmed, recovered, deaths, lastUpdate },
+    } = await axios.get(url);
+    console.log(confirmed);
 
     const modifiedData = {
-      confirmed: data.confirmed,
-      recovered: data.recovered,
+      confirmed,
+      recovered,
+      deaths,
+      lastUpdate,
     };
 
-    return data;
+    return modifiedData;
   } catch (error) {}
 };
