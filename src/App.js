@@ -11,6 +11,7 @@ class App extends React.Component {
   // constructor is immediately declared when writing a state
   state = {
     data: {}, // at first it's an empty object, waiting to be populated later below
+    country: "",
   };
 
   //componentDidMount() If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
@@ -20,6 +21,12 @@ class App extends React.Component {
 
     this.setState({ data: fetchedData });
   }
+
+  handleCountryChange = async (country) => {
+    console.log(country);
+    //fetch the data
+    //set the data
+  };
 
   render() {
     const { data } = this.state;
