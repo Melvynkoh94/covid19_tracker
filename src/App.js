@@ -17,26 +17,29 @@ class App extends React.Component {
   //componentDidMount() If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
   async componentDidMount() {
     const fetchedData = await fetchData();
-    console.log(fetchedData);
-
     this.setState({ data: fetchedData });
   }
 
   handleCountryChange = async (country) => {
-    console.log(country);
+    const fetchedData = await fetchData(country);
+    console.log(fetchedData);
+
     //fetch the data
+    fetchData(country);
+
     //set the data
+    this.setState({ data: fetchedData, country: country });
   };
 
   render() {
-    const { data } = this.state;
+    const { data, country } = this.state;
 
     return (
       <div className={styles.container}>
         <h1>Covid-19 App</h1>
         <Cards data={data} />
-        <CountryPicker />
-        <Chart />
+        <CountryPicker handleCountryChange={this.handleCountryChange} />
+        <Chart data={data} country={country} />
       </div>
     );
   }

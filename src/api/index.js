@@ -3,7 +3,14 @@ import axios from "axios";
 const url = "https://covid19.mathdro.id/api";
 
 // fetching overall data
-export const fetchData = async () => {
+export const fetchData = async (country) => {
+  let changeableURL = url;
+
+  // country is not falsey, meaning not null
+  if (country) {
+    changeableURL = `${url}/countries/${country}`;
+  }
+
   try {
     //const response = await axios.get(url);
 
@@ -11,8 +18,7 @@ export const fetchData = async () => {
     // we can use 'destructuring' (below)
     const {
       data: { confirmed, recovered, deaths, lastUpdate },
-    } = await axios.get(url);
-    console.log(confirmed);
+    } = await axios.get(changeableURL);
 
     const modifiedData = {
       confirmed,
@@ -22,7 +28,9 @@ export const fetchData = async () => {
     };
 
     return modifiedData;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // fetching daily data
