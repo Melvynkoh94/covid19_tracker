@@ -36,7 +36,15 @@ class App extends React.Component {
 
     return (
       <div className={styles.container}>
-        <h1>Covid-19 App</h1>
+        <header>
+          <h1>Covid-19 App</h1>
+          <p>
+            A Covid-19 Tracker built with ReactJS with data fetched from{" "}
+            <a href="https://covid19.mathdro.id/api">Mathroid</a> API
+            <br />
+            <span>Author: Melvyn Koh</span>
+          </p>
+        </header>
         <Cards data={data} />
         <CountryPicker handleCountryChange={this.handleCountryChange} />
         <Chart data={data} country={country} />
