@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { NativeSelect, FormControl } from "@material-ui/core";
+import { NativeSelect, FormControl, TextField } from "@material-ui/core";
+import { Autocomplete } from "@material-ui/lab";
+import { makeStyles } from "@material-ui/core/styles";
 
 import styles from "./CountryPicker.module.css";
 
@@ -21,13 +23,30 @@ const CountryPicker = ({ handleCountryChange }) => {
 
   //dynamic options below.
   // a key is required by React (a React rule for mapping )
+  // return (
+  //   <FormControl className={styles.formControl}>
+  //     <NativeSelect
+  //       defaultValue=""
+  //       onChange={(e) => handleCountryChange(e.target.value)}
+  //     >
+  //       <option value="">Global</option>
+  //       {fetchedCountries.map((country, i) => (
+  //         <option key={i} value={country}>
+  //           {country}
+  //         </option>
+  //       ))}
+  //     </NativeSelect>
+  //   </FormControl>
+  // );
+
+  // Using Material UI's Autocomplete Country Select
   return (
     <FormControl className={styles.formControl}>
       <NativeSelect
         defaultValue=""
         onChange={(e) => handleCountryChange(e.target.value)}
       >
-        <option value="global">Global</option>
+        <option value="">Global</option>
         {fetchedCountries.map((country, i) => (
           <option key={i} value={country}>
             {country}
